@@ -8,25 +8,36 @@
 	<script src="js/soundcloudapi.js"></script>
 	<script src="js/jquery/jquery-2.1.1.js"></script>
 	<script src="js/searchSoundCloud.js"></script>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
 	
 </head>
 <body>
-	<div>
-		<p><label>Music: </label><input type="text" class="text-search"></p>
-		<p>
-			<button type="button" onclick="getSearch()">Pesquisar</button>
-			<button type="button" onclick="clearDiv('.list-music')">Limpar Pesquisas</button>
-		</p>
+	<br/><br/>
+	<div class="container">
+		<div class="form-group">
+			<p>
+				<input type="text" class=" text-search" placeholder="SEARCH">
+				<input type="number" id="limit" min="1" max="50" placeholder="Quantidade" value='10'>
+			</p>
+			<p>
+				<div class="btn-group">
+				<button type="button" class="btn btn-lg btn-success" onclick="getSearch()">Pesquisar</button>
+				<button type="button" class="btn btn-lg btn-danger" onclick="clearDiv('.list-music')">Limpar Pesquisas</button>
+				</div>
+			</p>
 
-	</div>
-	<div class="audio-player">
+		</div>
+		<div class="audio-player">
 
-	</div>
+		</div>
 
-	<div>
-		<div class="list-music">
-			
+		<div>
+			<div class="list-music list-group">
+
+			</div>
 		</div>
 	</div>
+	<script src="js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -6,8 +6,8 @@ function getSearch()
 function searchAudio(search)
 {
 	url = 'http://api.soundcloud.com/search';
-
-	$.getJSON(url, {q: search, client_id: clientId(), format: 'json', limit: 10 }).done(function(data){
+	limitRows = parseInt($('#limit').val())+1;
+	$.getJSON(url, {q: search, client_id: clientId(), format: 'json', limit: limitRows }).done(function(data){
 		$.each(data.collection, function(i, item){
 			$('.list-music').prepend(verifyExistsAudio(item));
 		}
@@ -30,7 +30,7 @@ function verifyExistsAudio(item)
 	else
     {
     	link = $.trim(item.stream_url+'?client_id='+clientId());
-    	return '<a href="#" onclick="createPlayer(\''+link+'\')" > '+ item.title +'</a> <br/>';
+    	return '<a class="list-group-item list-item-color" onclick="createPlayer(\''+link+'\')" > '+ item.title +'</a>';
     }
 	
 }
