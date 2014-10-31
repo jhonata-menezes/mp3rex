@@ -23,7 +23,7 @@ function createPlayer(link)
 
 function verifyExistsAudio(item)
 {
-	if(typeof item.title === "undefined" && typeof item.stream_url === "undefined")
+	if(typeof item.title === "undefined" || typeof item.stream_url === "undefined")
 	{
 		return null;
 	}
