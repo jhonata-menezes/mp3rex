@@ -13,24 +13,29 @@
 	
 </head>
 <body>
-	<br/><br/>
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <form class="navbar-form navbar-left" role="form">
+            <div class="form-group">
+              	<input type="text" size="80" class="text-search form-control" placeholder="SEARCH">
+				<input type="number" id="limit" min="1" max="50" class="form-control" placeholder="Quantidade" value='10'>
+            </div>
+            <button type="button" class="btn btn-success" onclick="getSearch()">Pesquisar</button>
+			<button type="button" class="btn btn-danger" onclick="clearDiv('.list-music')">Limpar Pesquisas</button>
+          </form>
+          <div class="navbar-right navbar-form">
+          	<div class="audio-player"></div>
+          </div>
+        </div>
+      </div>
+    </nav>
+	<br/><br/><br/>
 	<div class="container">
-		<div class="form-group">
-			<p>
-				<input type="text" class=" text-search" placeholder="SEARCH">
-				<input type="number" id="limit" min="1" max="50" placeholder="Quantidade" value='10'>
-			</p>
-			<p>
-				<div class="btn-group">
-				<button type="button" class="btn btn-lg btn-success" onclick="getSearch()">Pesquisar</button>
-				<button type="button" class="btn btn-lg btn-danger" onclick="clearDiv('.list-music')">Limpar Pesquisas</button>
-				</div>
-			</p>
-
-		</div>
-		<div class="audio-player">
-
-		</div>
+		
+		
 
 		<div>
 			<div class="list-music list-group">
