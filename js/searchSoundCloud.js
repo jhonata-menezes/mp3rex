@@ -39,7 +39,7 @@ function verifyExistsAudio(item)
     {
     	duracao = new String(item.duration);
     	link = $.trim(item.stream_url+'?client_id='+clientId());
-    	return '<a name="teste.mp3" class="list-group-item list-item-color"> <span onclick="createPlayer(\''+link+'\')">'
+    	return '<a class="list-group-item list-item-color"> <span onclick="createPlayer(\''+link+'\')">'
               + item.title +'</span> <span class="pull-right"><b> Duração: '+ formatTime(parseInt(duracao.substring(0,(duracao.length-3)))) 
               +' Segundos Tamanho: '+ Math.round(parseInt(item.original_content_size)/1024) 
               +'Kb <b><img onclick="saveAudio(\''+ link +'\', \''+ item.title +'\', this)" title="Download" src="img/down-small63.png"></a></span>';
@@ -77,7 +77,7 @@ function saveAudio(link, name, classe){
   alertDownload(name);
   alteraImagem(classe, true);
   $.get(link, function(data) {
-    var blob = new Blob([data], {type: "audio/mpeg3"});
+    var blob = new Blob([data], {type: "audio/mpeg"});
     saveAs(blob, name+".mp3");
     alteraImagem(classe, false);
   });
