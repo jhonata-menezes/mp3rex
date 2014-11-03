@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="">
 	<script src="js/soundcloudapi.js"></script>
 	<script src="js/jquery/jquery-2.1.1.js"></script>
-	<script src="js/searchSoundCloud.js"></script>
+	<script src="js/FileSaver.min.js" ></script>
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/style.css" rel="stylesheet">
 	
@@ -20,11 +20,11 @@
         <div id="navbar" class="navbar-collapse collapse">
           <form class="navbar-form navbar-left" role="form">
             <div class="form-group">
-              	<input type="text" size="80" class="text-search form-control" placeholder="SEARCH">
+              	<input type="text" id="search-box" size="80" class="text-search form-control" autofocus="autofocus" placeholder="SEARCH">
 				<input type="number" id="limit" min="1" max="50" class="form-control" placeholder="Quantidade" value='10'>
             </div>
-            <button type="button" class="btn btn-success" onclick="getSearch()">Pesquisar</button>
-			<button type="button" class="btn btn-danger" onclick="clearDiv('.list-music')">Limpar Pesquisas</button>
+            <button type="button" class="btn btn-success" id="search" onclick="getSearch()">Pesquisar</button>
+			<button type="button" class="btn btn-danger" onclick="clearDiv('.list-music')">Limpar Pesquisa</button>
           </form>
           <div class="navbar-right navbar-form">
           	<div class="audio-player"></div>
@@ -37,12 +37,19 @@
 		
 		
 
-		<div>
+		<div class="">
 			<div class="list-music list-group">
 
 			</div>
 		</div>
 	</div>
+	<div class="footer">
+      <div class="container">
+        <p class="text-muted text-center">MP3Rex &copy; Company.</p>
+      </div>
+    </div>
+
+	<script src="js/searchSoundCloud.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 </body>
 </html>
