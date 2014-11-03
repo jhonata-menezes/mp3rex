@@ -42,7 +42,7 @@ function verifyExistsAudio(item)
     	return '<a name="teste.mp3" class="list-group-item list-item-color"> <span onclick="createPlayer(\''+link+'\')">'
               + item.title +'</span> <span class="pull-right"><b> Duração: '+ formatTime(parseInt(duracao.substring(0,(duracao.length-3)))) 
               +' Segundos Tamanho: '+ Math.round(parseInt(item.original_content_size)/1024) 
-              +'Kb <b><img onclick="saveAudio(\''+ link +'\', \''+ item.title +'\')" title="Download" src="img/down-small63.png"></a></span>';
+              +'Kb <b><img onclick="saveAudio(\''+ link +'\', \''+ item.title +'\', this)" title="Download" src="img/down-small63.png"></a></span>';
     }
 	
 }
@@ -73,12 +73,24 @@ function formatTime(secs){
    return time;
 }
 
-function saveAudio(link, name){
+function saveAudio(link, name, classe){
+  alertDownload(name);
+  alteraImagem(classe, true);
   $.get(link, function(data) {
     var blob = new Blob([data], {type: "audio/mpeg3"});
     saveAs(blob, name+".mp3");
+    alteraImagem(classe, false);
   });
   
+}
+
+
+function alertDownload(title)
+{
+  alert = '<div class="alert alert-info alert-dismissible" role="alert"><button type="button" class="close"'
+          +' data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>'
+          +'<strong>'+ title +' - Sendo carregado, aguarde ...  </div>'
+  $('.info').html(alert);
 }
 
 $("#search-box").keypress(function(event) {
@@ -87,4 +99,14 @@ $("#search-box").keypress(function(event) {
         $("#search").click();
     }
 });
+
+function alteraImagem(classe, carrega)
+{
+  if (carrega == true) {
+    $(classe).attr("src","img/downloading.gif");
+  }
+  else{
+    $(classe).attr("src","img/down-success.jpg");
+  }
+}
 
