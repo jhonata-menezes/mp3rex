@@ -76,25 +76,20 @@ function formatTime(secs){
 function saveAudio(link, name, classe){
   alertDownload(name);
   alteraImagem(classe, true);
-  request = $.ajax({
+  $.ajax({
     url: link,
     type: "GET",
     dataType: "binary",
-  processData: false,
-  responseType:'arraybuffer',
-  success: function(result){
-    //prompt(result.substring(0,100));
-  }
+    processData: false,
+    responseType:'arraybuffer',
+    success: function(result){
+      var blob = new Blob([result], {type: "audio/mpeg"});
+      saveAs(blob, name+".mp3");
+      alteraImagem(classe, false);
+    }  
   });
-
-  request.done(function(data) {
-    //prompt(data.substring(0,100));
-    var blob = new Blob([data], {type: "audio/mpeg"});
-    saveAs(blob, name+".mp3");
-    alteraImagem(classe, false);
-  });
-  
 }
+
 
 
 function alertDownload(title)
@@ -121,36 +116,3 @@ function alteraImagem(classe, carrega)
     $(classe).attr("src","img/down-success.jpg");
   }
 }
-
-$.ajaxTransport("+binary", function(options, originalOptions, jqXHR){
-    // check for conditions and support for blob / arraybuffer response type
-    if (window.FormData && ((options.dataType && (options.dataType == 'binary')) || (options.data && ((window.ArrayBuffer && options.data instanceof ArrayBuffer) || (window.Blob && options.data instanceof Blob)))))
-    {
-        return {
-            // create new XMLHttpRequest
-            send: function(_, callback){
-    // setup all variables
-                var xhr = new XMLHttpRequest(),
-                    url = options.url,
-                    type = options.type,
-    // blob or arraybuffer. Default is blob
-                    dataType = options.responseType || "blob",
-                    data = options.data || null;
-        
-                xhr.addEventListener('load', function(){
-                    var data = {};
-                    data[options.dataType] = xhr.response;
-    // make callback and send data
-                    callback(xhr.status, xhr.statusText, data, xhr.getAllResponseHeaders());
-                });
-
-                xhr.open(type, url, true);
-                xhr.responseType = dataType;
-                xhr.send(data);
-            },
-            abort: function(){
-                jqXHR.abort();
-            }
-        };
-    }
-});
