@@ -1,7 +1,18 @@
-function getSearch()
-{
-	searchAudio($('.text-search').val());
-}
+jQuery(document).ready(function($) {
+
+//  
+var search = $('#search_box'),
+  getSearch = $('#get_search'),
+  textSearchInfo = $('#text-search-info');
+  
+
+  // pesquisa de musica
+  getSearch.on('click', function(){
+    searchAudio(search.val());
+    textSearchInfo.html('<h4><b>Resultados para: </b> ' + search.val() + '</h4>');
+  });
+	
+
 
 function searchAudio(search)
 {
@@ -23,10 +34,7 @@ function searchAudio(search)
 }
 
 
-function createPlayer(link)
-{
-	$('.audio-player').html('<audio controls="controls" autoplay="autoplay" preload="auto"><source src="'+ link +'" type="audio/mpeg">Your browser does not support the audio element.</audio>');
-}
+
 
 
 function verifyExistsAudio(item)
@@ -73,6 +81,36 @@ function formatTime(secs){
    return time;
 }
 
+
+
+
+
+
+
+search.keypress(function(event) {
+    if (event.which == 13) {
+        event.preventDefault();
+        getSearch.click();
+    }
+});
+
+
+
+
+
+
+$('#clear-search').click(function(){
+  clearDiv('.list-music');
+  clearDiv(textSearchInfo);
+});
+
+});
+
+function createPlayer(link)
+{
+  $('.audio-player').html('<audio controls="controls" autoplay="autoplay" preload="auto"><source src="'+ link +'" type="audio/mpeg">Your browser does not support the audio element.</audio>');
+}
+
 function saveAudio(link, name, classe){
   alertDownload(name);
   alteraImagem(classe, true);
@@ -90,22 +128,13 @@ function saveAudio(link, name, classe){
   });
 }
 
-
-
 function alertDownload(title)
 {
-  alert = '<div class="alert alert-info alert-dismissible" role="alert"><button type="button" class="close"'
+  var alert = '<div class="alert alert-info alert-dismissible" role="alert"><button type="button" class="close"'
           +' data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>'
           +'<strong>'+ title +' - Sendo carregado, aguarde ...  </div>'
   $('.info').html(alert);
 }
-
-$("#search-box").keypress(function(event) {
-    if (event.which == 13) {
-        event.preventDefault();
-        $("#search").click();
-    }
-});
 
 function alteraImagem(classe, carrega)
 {

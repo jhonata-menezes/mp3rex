@@ -5,13 +5,9 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>MP3Rex</title>
 	<link rel="stylesheet" href="">
-	<script src="js/soundcloudapi.js"></script>
-	<script src="js/jquery/jquery-2.1.1.js"></script>
-	<script src="js/FileSaver.min.js" ></script>
-	<script src="js/jquery.binarytransport.js"></script>
+	<script src="js/jquery/jquery-2.1.1.js"></script>	
 	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="css/style.css" rel="stylesheet">
-	
+	<link href="css/style.css" rel="stylesheet">	
 </head>
 <body>
 	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -22,11 +18,11 @@
         <div id="navbar" class="navbar-collapse collapse">
           <form class="navbar-form navbar-left" role="form">
             <div class="form-group">
-              	<input type="text" id="search-box" size="80" class="text-search form-control" autofocus="autofocus" placeholder="SEARCH">
+              	<input type="text" id="search_box" size="80" class="text-search form-control" autofocus="autofocus" placeholder="SEARCH">
 				<input type="number" id="limit" min="1" max="2000" class="form-control" placeholder="Quantidade" value='10'>
             </div>
-            <button type="button" class="btn btn-success" id="search" onclick="getSearch()">Pesquisar</button>
-			<button type="button" class="btn btn-danger" onclick="clearDiv('.list-music')">Limpar Pesquisa</button>
+            <button type="button" class="btn btn-success" id="get_search" >Pesquisar</button>
+			<button type="button" class="btn btn-danger" id="clear-search">Limpar Pesquisa</button>
           </form>
           <div class="navbar-right navbar-form">
           	<div class="audio-player"></div>
@@ -40,6 +36,9 @@
 		
 		<div class="info">
 		</div>
+		<div id="text-search-info">
+
+		</div>
 		<div class="">
 			<div class="list-music list-group">
 
@@ -51,7 +50,9 @@
         <p class="text-muted text-center">MP3Rex &copy; Company.</p>
       </div>
     </div>
-
+    <script src="js/soundcloudapi.js"></script>
+    <script src="js/FileSaver.min.js" ></script>
+	<script src="js/jquery.binarytransport.js"></script>
 	<script src="js/searchSoundCloud.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 </body>
